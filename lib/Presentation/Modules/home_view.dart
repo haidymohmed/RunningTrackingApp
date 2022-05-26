@@ -166,13 +166,14 @@ class _HomeViewState extends State<HomeView> {
                   }
                   else{
                     return Container(
+                      padding: EdgeInsets.all(10.sp),
                       child: Center(
                         child: CustomerText(
                           data:  "You haven't taken any Journeys yet",
                           color: Colors.black,
                           textAlign: TextAlign.left,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w300,
                         )
                       ),
                     );

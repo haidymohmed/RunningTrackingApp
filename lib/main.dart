@@ -23,17 +23,18 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await CacheHelper.init();
+  Location().enableBackgroundMode(enable: true);
   runApp(
       MultiBlocProvider(
         providers: [
           BlocProvider (create: (_) => CheckConnectionCubit()..initialConnection()),
-          BlocProvider(create: (_) => LiveLocationCubit()),
-          BlocProvider(create: (_) => JourneysCubit()),
           BlocProvider (create: (_) => LocationCubit()..enable()),
           BlocProvider (create: (_) => HomeCubit()),
           BlocProvider (create : (_) => SignUpCubit()),
           BlocProvider(create: (_) => LogInCubit()),
           BlocProvider(create: (_) => UserCubit()),
+          BlocProvider(create: (_) => LiveLocationCubit()),
+          BlocProvider(create: (_) => JourneysCubit()),
         ],
           child: const RunningTrackingApp()
       )
@@ -54,6 +55,8 @@ class _RunningTrackingAppState extends State<RunningTrackingApp> {
     await CheckConnectionCubit.get(context).initialConnection();
     await location.requestPermission();
     await LocationCubit.get(context).enable();
+    JourneysCubit();
+    LiveLocationCubit();
   }
   void initState() {
     // TODO: implement initState

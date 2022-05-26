@@ -5,11 +5,11 @@ import '../../Models/API/user_journeys.dart';
 import 'journeys_status.dart';
 
 class JourneysCubit extends Cubit<DisplayJourneyStatus>{
-  List<LiveData> journrys = <LiveData>[];
   JourneysCubit get(context) => BlocProvider.of(context);
   UserJourneysAPI userJourneysAPI = UserJourneysAPI();
   JourneysCubit() : super(LoadingJourneys()){
     userJourneysAPI.getJourneys().listen((result){
+      List<LiveData> journrys = [];
       result.forEach((element){
         journrys.add(element);
       });

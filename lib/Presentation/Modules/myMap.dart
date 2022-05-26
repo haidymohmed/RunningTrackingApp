@@ -10,6 +10,7 @@ import 'package:task_final/Presentation/Dialog/toaste.dart';
 import '../../Domain/EnableLocation/LocationCubit.dart';
 import '../../Domain/LiveLocation/live_cubit.dart';
 import '../../Domain/LiveLocation/live_status.dart';
+import '../Widget/UserText.dart';
 import '../Widget/button.dart';
 import '../Widget/map_app_bar.dart';
 import '../../Models/LiveData.dart';
@@ -88,8 +89,20 @@ class _MyMapState extends State<MyMap> {
                     );
                   }
                   else{
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return Center(
+                      child: InkWell(
+                        onTap: (){
+                          Location().changeSettings(interval: 300, accuracy: LocationAccuracy.high);
+                          Location().enableBackgroundMode(enable: true);
+                        },
+                        child: CustomerText(
+                          data:  "You have to give App Permission to Display MAP \n click here to give Permission ",
+                          color: Colors.black,
+                          textAlign: TextAlign.center,
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     );
                   }
                 },
